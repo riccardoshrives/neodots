@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git clone git clone https://github.com/neovim/neovim ~/.config/nvim/neovim
+git clone https://github.com/neovim/neovim ~/.config/nvim/neovim
 
 sudo rm /usr/local/bin/nvim
 sudo rm -r /usr/local/share/nvim/
