@@ -42,20 +42,28 @@ packer.init {
 return packer.startup(function(use)
     -- My plugins here
     use "wbthomason/packer.nvim" -- Have packer manage itself
+
+    -- Telescope
     use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
-    use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-    use "kyazdani42/nvim-web-devicons"
+    use "nvim-lua/popup.nvim"
+    use "nvim-telescope/telescope.nvim"
+    use {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run = "make"
+    }
+    use "sudormrfbin/cheatsheet.nvim"
+
+    -- Neovim behaviour
     use "kyazdani42/nvim-tree.lua"
-    -- use "akinsho/bufferline.nvim"
     use "moll/vim-bbye"
-    use "nvim-lualine/lualine.nvim"
-    use "akinsho/toggleterm.nvim"
     use "ahmedkhalf/project.nvim"
-    use "lewis6991/impatient.nvim"
-    use "lukas-reineke/indent-blankline.nvim"
-    use "goolord/alpha-nvim"
-    use "ThePrimeagen/harpoon"
+    use "akinsho/toggleterm.nvim"
+
+    -- GUI
+    use "kyazdani42/nvim-web-devicons"
     use "riccardoshrives/nvim-transparent"
+    use "goolord/alpha-nvim"
+    use "nvim-lualine/lualine.nvim"
     use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
@@ -65,17 +73,18 @@ return packer.startup(function(use)
         ft = { "markdown" },
     }
 
-    -- Optimizations
-    use "tpope/vim-surround"
-    use "numToStr/Comment.nvim"
-    -- use "tpope/vim-commentary" -- Trying out comment.nvim
-
     -- Colorschemes
     use "folke/tokyonight.nvim"
     use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
     use "lunarvim/darkplus.nvim"
     use "gruvbox-community/gruvbox"
     use "sp5/nvim-colors-solarized"
+
+    -- Shortcuts, Optimizations, and Efficiencies
+    use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+    use "lewis6991/impatient.nvim"
+    use "tpope/vim-surround"
+    use "numToStr/Comment.nvim"
 
     -- cmp plugins
     use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -96,15 +105,7 @@ return packer.startup(function(use)
     use "williamboman/nvim-lsp-installer" -- simple to use language server installer
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
     use "RRethy/vim-illuminate"
-
-    -- Telescope
-    use "nvim-lua/popup.nvim"
-    use "nvim-telescope/telescope.nvim"
-    use {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        run = "make"
-    }
-    use "sudormrfbin/cheatsheet.nvim"
+    use "lukas-reineke/indent-blankline.nvim"
 
     -- Treesitter
     use {
