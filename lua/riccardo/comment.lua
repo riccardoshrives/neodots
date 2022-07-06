@@ -3,5 +3,4 @@ if not status_ok then
   return
 end
 
-comment.setup {
-}
+comment.setup {}
