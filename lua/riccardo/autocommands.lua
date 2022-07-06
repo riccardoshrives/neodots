@@ -1,3 +1,6 @@
+-- Gimme them au groups
+local myCommands = vim.api.nvim_create_augroup("My Commands", { clear = true })
+
 -- Use 'q' to quit from common plugins
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
@@ -29,24 +32,28 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- Use 2 tabs in some filetepes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "lua", "javascript" },
+  callback = function()
+    vim.schedule(function()
+      print "Tabs changed to 2"
+    end)
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+    vim.opt_local.softtabstop = 2
+  end,
+  group = myCommands,
+})
+
 -- Attemps to set yaml syntax highlighting for html files in Statamic
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   pattern = { "*.html" },
   callback = function()
     vim.opt_local.syntax = "yaml"
   end,
+  group = myCommands,
 })
-
--- Use 2 tabs in some filetepes
--- For some reason this breaks lua files
--- vim.api.nvim_create_autocmd({ "FileType" }, {
---   pattern = { "lua" },
---   callback = function()
---     vim.opt_local.tabstop = 2
---     vim.opt_local.softabstop = 2
---     vim.opt_local.shiftwidth = 2
---   end,
--- })
 
 vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
 
