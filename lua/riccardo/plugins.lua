@@ -113,6 +113,12 @@ return packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
+  use {
+    "lewis6991/spellsitter.nvim",
+    config = function()
+      require("spellsitter").setup()
+    end,
+  }
 
   -- Git
   use "lewis6991/gitsigns.nvim"
