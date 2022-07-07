@@ -107,6 +107,7 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "RRethy/vim-illuminate"
   use "lukas-reineke/indent-blankline.nvim"
+  use "SmiteshP/nvim-navic"
 
   -- Treesitter
   use {

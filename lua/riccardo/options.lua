@@ -31,7 +31,7 @@ local options = {
   completeopt = "menu,menuone,noselect", -- whether to use a popup menu for Insert mode completion
   pumheight = 10, -- pop up menu height
   showmode = false, -- we no longer need to display the current mode in the msg area
-  winbar = "%h%m%=%f", -- customize winbar
+  winbar = "%h%m %{%v:lua.require'nvim-navic'.get_location()%}%=%f", -- customize winbar
   clipboard = vim.opt.clipboard + "unnamedplus", -- use system clipboard
   isfname = vim.opt.isfname + "@-@", -- include more characters in file names
   shortmess = vim.opt.shortmess + "c", -- Don't pass messages to ins-completion-menu
