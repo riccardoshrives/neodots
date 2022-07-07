@@ -14,4 +14,7 @@ configs.setup {
     enable = true,
   },
   indent = { enable = true, disable = { "python", "css" } },
+  matchup = {
+    enable = true, -- enable andymass/vim-matchup
+  }
 }

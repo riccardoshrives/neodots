@@ -54,12 +54,12 @@ return packer.startup(function(use)
   use "sudormrfbin/cheatsheet.nvim"
 
   -- Neovim behaviour
-  use "kyazdani42/nvim-tree.lua"
   use "moll/vim-bbye"
   use "ahmedkhalf/project.nvim"
   use "akinsho/toggleterm.nvim"
 
   -- GUI
+  use "kyazdani42/nvim-tree.lua"
   use "kyazdani42/nvim-web-devicons"
   use "riccardoshrives/nvim-transparent"
   use "goolord/alpha-nvim"
@@ -119,6 +119,7 @@ return packer.startup(function(use)
       require("spellsitter").setup()
     end,
   }
+  use "andymass/vim-matchup"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
