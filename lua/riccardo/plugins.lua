@@ -81,6 +81,7 @@ return packer.startup(function(use)
   use "shaunsingh/solarized.nvim"
   use "overcache/NeoSolarized"
   use "EdenEast/nightfox.nvim"
+  use "marko-cerovac/material.nvim"
 
   -- Shortcuts, Optimizations, and Efficiencies
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
