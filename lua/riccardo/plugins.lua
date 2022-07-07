@@ -80,6 +80,7 @@ return packer.startup(function(use)
   use "gruvbox-community/gruvbox"
   use "shaunsingh/solarized.nvim"
   use "overcache/NeoSolarized"
+  use "EdenEast/nightfox.nvim"
 
   -- Shortcuts, Optimizations, and Efficiencies
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
