@@ -31,6 +31,7 @@ keymap("n", "<leader>o", ":wincmd o<CR>", opts)
 keymap("n", "<leader>z", ":wincmd z<CR>", opts)
 -- keymap("n", "<leader>x", ":Ex<CR>", opts)
 keymap("n", "<leader><CR>", ":Alpha<CR>", opts)
+keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader><leader>x", ":w<CR>:so %<CR>", opts)
 
 -- Close buffers
