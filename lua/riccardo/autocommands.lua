@@ -36,13 +36,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "lua", "javascript" },
   callback = function()
-    vim.schedule(function()
-      print "Tabs changed to 2"
-    end)
+    -- vim.schedule(function()
+    --   print "Tabs changed to 2"
+    -- end)
     vim.opt_local.shiftwidth = 2
     vim.opt_local.tabstop = 2
     vim.opt_local.softtabstop = 2
   end,
+  desc = " Use 2 tabs for lua and js filetepes ",
   group = myCommands,
 })
 
