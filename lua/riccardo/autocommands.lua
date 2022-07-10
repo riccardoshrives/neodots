@@ -48,11 +48,19 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Attemps to set yaml syntax highlighting for html files in Statamic
-vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+vim.api.nvim_create_autocmd({ "BufRead", "BufReadPost" }, {
   pattern = { "*.html" },
   callback = function()
-    vim.opt_local.syntax = "yaml"
+    local path = vim.fn.expand "<afile>:p"
+    if string.find(path, "TII%-Statamic/site/content") then
+      vim.schedule(function()
+        print "Statamic html file has been set as yaml"
+      end)
+      vim.opt_local.filetype = "yaml"
+    else
+    end
   end,
+  desc = " Use yaml syntax for html files in Statamic ",
   group = myCommands,
 })
 
