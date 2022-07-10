@@ -92,8 +92,9 @@ M.on_attach = function(client, bufnr)
   if not navic_status_ok then
     return
   end
-  navic.attach(client, bufnr)
-
+  if client.name ~= "html" then
+    navic.attach(client, bufnr)
+  end
 end
 
 return M
