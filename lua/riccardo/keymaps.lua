@@ -64,6 +64,8 @@ keymap("n", "<leader>s", ":setlocal spell!<CR>", opts)
 keymap("n", "<leader>d", '"_d', opts)
 keymap("n", "x", '"_x', opts)
 
+-- Telescope
+keymap("n", "<leader>t", ":Telescope<CR>")
 -- Naviagate buffers
 -- keymap("n", "<S-l>", ":bnext<CR>", opts)
 -- keymap("n", "<S-h>", ":bprevious<CR>", opts)
@@ -78,6 +80,9 @@ keymap("i", "jk", "<ESC>", opts)
 keymap("i", "<C-c>", "ESC", opts)
 
 -- VISUAL MODE --
+-- Escape with jk
+keymap("v", "jk", "<ESC>", opts)
+
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
@@ -91,6 +96,9 @@ keymap("v", "p", '"_dP', opts)
 keymap("v", ".", ":normal .<CR>", opts)
 
 -- Visual Block --
+-- Escape with jk
+keymap("x", "jk", "<ESC>", opts)
+
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
