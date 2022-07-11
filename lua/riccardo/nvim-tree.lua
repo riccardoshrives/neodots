@@ -19,6 +19,9 @@ nvim_tree.setup {
     update_cwd = true,
   },
 
+  -- sensible defaults
+  hijack_cursor = true,
+
   renderer = {
     root_folder_modifier = ":t",
     icons = {
@@ -58,9 +61,10 @@ nvim_tree.setup {
     },
   },
   view = {
-    width = 30,
-    height = 30,
-    side = "left",
+    adaptive_size = true,
+    -- width = 30,
+    -- height = 30,
+    -- side = "left",
     mappings = {
       list = {
         { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
