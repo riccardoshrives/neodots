@@ -23,54 +23,54 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
-keymap("n", "<leader>h", ":wincmd h<CR>", opts)
-keymap("n", "<leader>j", ":wincmd j<CR>", opts)
-keymap("n", "<leader>k", ":wincmd k<CR>", opts)
-keymap("n", "<leader>l", ":wincmd l<CR>", opts)
-keymap("n", "<leader>o", ":wincmd o<CR>", opts)
-keymap("n", "<leader>z", ":wincmd z<CR>", opts)
--- keymap("n", "<leader>x", ":Ex<CR>", opts)
-keymap("n", "<leader><CR>", ":Alpha<CR>", opts)
-keymap("n", "<leader>w", ":w<CR>", opts)
-keymap("n", "<leader><leader>x", ":w<CR>:so %<CR>", opts)
+keymap("n", "<leader>h", "<cmd>wincmd h<CR>", opts)
+keymap("n", "<leader>j", "<cmd>wincmd j<CR>", opts)
+keymap("n", "<leader>k", "<cmd>wincmd k<CR>", opts)
+keymap("n", "<leader>l", "<cmd>wincmd l<CR>", opts)
+keymap("n", "<leader>o", "<cmd>wincmd o<CR>", opts)
+keymap("n", "<leader>z", "<cmd>wincmd z<CR>", opts)
+-- keymap("n", "<leader>x", "<cmd>Ex<CR>", opts)
+keymap("n", "<leader><CR>", "<cmd>Alpha<CR>", opts)
+keymap("n", "<leader>w", "<cmd>w<CR>", opts)
+keymap("n", "<leader><leader>x", "<cmd>w<CR><cmd>so %<CR>", opts)
 
 -- Close buffers
--- keymap("n", "<leader>c", ":wincmd c<CR>", opts)
+-- keymap("n", "<leader>c", "<cmd>wincmd c<CR>", opts)
 keymap("n", "<leader>c", "<cmd>close<CR>", opts)
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Resize with arrows
-keymap("n", "<S-Up>", ":resize -2<CR>", opts)
-keymap("n", "<S-Down>", ":resize +2<CR>", opts)
-keymap("n", "<S-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<S-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<S-Up>", "<cmd>resize -2<CR>", opts)
+keymap("n", "<S-Down>", "<cmd>resize +2<CR>", opts)
+keymap("n", "<S-Left>", "<cmd>vertical resize -2<CR>", opts)
+keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":tabnext<CR>", opts)
-keymap("n", "<S-h>", ":tabprevious<CR>", opts)
+keymap("n", "<S-l>", "<cmd>tabnext<CR>", opts)
+keymap("n", "<S-h>", "<cmd>tabprevious<CR>", opts)
 
 -- Move text up and down
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+keymap("n", "<A-j>", "<Esc><cmd>m .+1<CR>==gi", opts)
+keymap("n", "<A-k>", "<Esc><cmd>m .-2<CR>==gi", opts)
 
 -- Center screen on next match
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 
 -- Toggle spellcheck
-keymap("n", "<leader>s", ":setlocal spell!<CR>", opts)
+keymap("n", "<leader>s", "<cmd>setlocal spell!<CR>", opts)
 
 -- Delete without yanking
 keymap("n", "<leader>d", '"_d', opts)
 keymap("n", "x", '"_x', opts)
 
 -- Telescope
-keymap("n", "<leader>t", ":Telescope<CR>")
+keymap("n", "<leader>t", "<cmd>Telescope<CR>")
 -- Naviagate buffers
--- keymap("n", "<S-l>", ":bnext<CR>", opts)
--- keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- keymap("n", "<S-l>", "<cmd>bnext<CR>", opts)
+-- keymap("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 
--- keymap("n", "<RightMouse>", ":Alpha<CR>", opts)
+-- keymap("n", "<RightMouse>", "<cmd>Alpha<CR>", opts)
 
 -- INSERT MODE --
 -- Press jk fast to escape
@@ -88,36 +88,36 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<S-j>", ":m .+1<CR>==", opts)
-keymap("v", "<S-k>", ":m .-2<CR>==", opts)
+keymap("v", "<S-j>", "<cmd>m .+1<CR>==", opts)
+keymap("v", "<S-k>", "<cmd>m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Perform dot commands over visual blocks
-keymap("v", ".", ":normal .<CR>", opts)
+keymap("v", ".", "<cmd>normal .<CR>", opts)
 
 -- Visual Block --
 -- Escape with jk
 keymap("x", "jk", "<ESC>", opts)
 
 -- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+keymap("x", "J", "<cmd>move '>+1<CR>gv-gv", opts)
+keymap("x", "K", "<cmd>move '<-2<CR>gv-gv", opts)
+keymap("x", "<A-j>", "<cmd>move '>+1<CR>gv-gv", opts)
+keymap("x", "<A-k>", "<cmd>move '<-2<CR>gv-gv", opts)
 
 -- Plugins --
 
 -- NvimTree
-keymap("n", "<leader>x", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<leader>x", "<cmd>NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
-keymap("n", "<leader>en", ":Telescope find_files cwd=~/.config/nvim<CR>", opts)
-keymap("v", "<leader>fw", ":Telescope grep_string<CR>", opts)
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
+keymap("n", "<leader>ft", "<cmd>Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fp", "<cmd>Telescope projects<CR>", opts)
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
+keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
+keymap("n", "<leader>en", "<cmd>Telescope find_files cwd=~/.config/nvim<CR>", opts)
+keymap("v", "<leader>fw", "<cmd>Telescope grep_string<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
