@@ -35,6 +35,8 @@ local options = {
   clipboard = vim.opt.clipboard + "unnamedplus", -- use system clipboard
   isfname = vim.opt.isfname + "@-@", -- include more characters in file names
   shortmess = vim.opt.shortmess + "c", -- Don't pass messages to ins-completion-menu
+  timeoutlen = 500, -- Time in milliseconds to wait for a mapped sequence to complete.
+  cpo = vim.opt.cpo + "n", -- When included, the column used for 'number' and 'relativenumber' will also be used for text of wrapped lines.
 }
 
 for key, value in pairs(options) do

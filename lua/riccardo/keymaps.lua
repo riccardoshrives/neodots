@@ -77,11 +77,11 @@ keymap("n", "<leader>t", "<cmd>Telescope<CR>")
 keymap("i", "jk", "<ESC>", opts)
 
 -- Ctrl-c to escape
-keymap("i", "<C-c>", "ESC", opts)
+keymap("i", "<C-c>", "<ESC>", opts)
 
 -- VISUAL MODE --
 -- Escape with jk
-keymap("v", "jk", "<ESC>", opts)
+-- keymap("v", "jk", "<ESC>", opts)
 
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -97,7 +97,7 @@ keymap("v", ".", "<cmd>normal .<CR>", opts)
 
 -- Visual Block --
 -- Escape with jk
-keymap("x", "jk", "<ESC>", opts)
+-- keymap("x", "jk", "<ESC>", opts)
 
 -- Move text up and down
 keymap("x", "J", "<cmd>move '>+1<CR>gv-gv", opts)
@@ -124,3 +124,6 @@ keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Markdown preview
 keymap("n", "<leader>md", "<Plug>MarkdownPreviewToggle", opts)
+
+-- Cheatsheet
+keymap("n", "<leader>?", ":Cheatsheet<CR>", opts)

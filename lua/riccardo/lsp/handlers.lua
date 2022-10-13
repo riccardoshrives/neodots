@@ -94,8 +94,7 @@ M.on_attach = function(client, bufnr)
   local navic_status_ok, navic = pcall(require, "nvim-navic")
   if not navic_status_ok then
     return
-  end
-  if client.name ~= "html" then
+  elseif client.name ~= "html" or client.name ~= "cssls"  then
     navic.attach(client, bufnr)
   end
 end

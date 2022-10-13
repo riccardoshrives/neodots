@@ -82,12 +82,18 @@ return packer.startup(function(use)
   use "overcache/NeoSolarized"
   use "EdenEast/nightfox.nvim"
   use "marko-cerovac/material.nvim"
+  use "ChristianChiarulli/nvcode-color-schemes.vim"
+  use {
+    "sonph/onehalf",
+    rtp = "vim",
+  }
 
   -- Shortcuts, Optimizations, and Efficiencies
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "lewis6991/impatient.nvim"
   use "tpope/vim-surround"
   use "numToStr/Comment.nvim"
+  use "tpope/vim-unimpaired"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -130,7 +136,8 @@ return packer.startup(function(use)
   -- DAP
   use "mfussenegger/nvim-dap"
   use "rcarriga/nvim-dap-ui"
-  use "Pocco81/DAPInstall.nvim"
+  use "nvim-telescope/telescope-dap.nvim"
+  use "theHamsta/nvim-dap-virtual-text"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
