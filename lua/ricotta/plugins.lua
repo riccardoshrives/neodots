@@ -106,6 +106,12 @@ return packer.startup(function(use)
             require("toggleterm").setup()
         end
     }
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
     use ("tpope/vim-surround")
     use ("tpope/vim-unimpaired")
 
