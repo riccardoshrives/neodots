@@ -1,2 +1,2 @@
-require("ricotta.remap")
+require("ricotta.maps")
 require("ricotta.options")
