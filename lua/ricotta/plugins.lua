@@ -56,22 +56,25 @@ return packer.startup(function(use)
 
   -- Theming
   use({
-	  'rose-pine/neovim',
-	  as = 'rose-pine',
+	  "rose-pine/neovim",
+	  as = "rose-pine",
 	  config = function()
 		  require("rose-pine").setup()
-		  vim.cmd('colorscheme rose-pine')
+		  vim.cmd("colorscheme rose-pine")
 	  end
   })
 
   -- Treesitter
   use {
-	  'nvim-treesitter/nvim-treesitter',
+	  "nvim-treesitter/nvim-treesitter",
 	  run = function()
-		  local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+		  local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
 		  ts_update()
 	  end,
   }
+
+  -- Undotree
+  use ("mbbill/undotree")
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
