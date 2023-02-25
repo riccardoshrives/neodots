@@ -5,7 +5,6 @@ local options = {
   swapfile = false, -- use buffers without swapfiles
   backup = false, -- do not use vim backups
   undofile = true, -- create an undo file instead
-  undodir = "~/.vim/undodir/", -- put those undo fles in this directory
   fileencoding = "utf-8", -- the encoding written to a file
   errorbells = false, -- shut up
   splitbelow = true, -- a new window is put below the current one
@@ -45,3 +44,6 @@ local options = {
 for key, value in pairs(options) do
   vim.opt[key] = value
 end
+
+-- put those undo fles in this directory
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir/"
