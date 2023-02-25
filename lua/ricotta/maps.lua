@@ -86,4 +86,5 @@ keymap("v", ".", "<cmd>normal .<CR>", opts)
 -- Don't mess with my clipboard pls
 keymap("x", "<leader>p", '"_dP', opts)
 
-
+-- Lazygit
+keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
