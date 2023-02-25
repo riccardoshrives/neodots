@@ -49,11 +49,20 @@ return packer.startup(function(use)
 	  -- or                            , branch = '0.1.x',
 	  requires = { {"nvim-lua/plenary.nvim"} }
   }
-
   use {
 	  "nvim-telescope/telescope-fzf-native.nvim", 
 	  run = "make"
   }
+
+  -- Theming
+  use({
+	  'rose-pine/neovim',
+	  as = 'rose-pine',
+	  config = function()
+		  require("rose-pine").setup()
+		  vim.cmd('colorscheme rose-pine')
+	  end
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
