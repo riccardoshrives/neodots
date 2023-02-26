@@ -55,6 +55,7 @@ return packer.startup(function(use)
     }
 
     -- Theming
+    use "riccardoshrives/nvim-transparent"
     use({
         "rose-pine/neovim",
         as = "rose-pine",
