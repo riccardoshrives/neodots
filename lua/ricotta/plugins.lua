@@ -129,6 +129,10 @@ return packer.startup(function(use)
     use ("tpope/vim-surround")
     use ("tpope/vim-unimpaired")
     use ("ahmedkhalf/project.nvim")
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
 
 
     -- Automatically set up your configuration after cloning packer.nvim
