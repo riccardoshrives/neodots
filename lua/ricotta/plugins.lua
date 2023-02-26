@@ -131,6 +131,13 @@ return packer.startup(function(use)
     use("ahmedkhalf/project.nvim")
     use("windwp/nvim-autopairs")
     use {
+        'sudormrfbin/cheatsheet.nvim',
+
+        requires = {
+            { 'nvim-telescope/telescope.nvim' },
+            { 'nvim-lua/popup.nvim' },
+            { 'nvim-lua/plenary.nvim' },
+        }
     }
 
 
