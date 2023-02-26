@@ -14,6 +14,14 @@ local lsp = require('lsp-zero').preset({
     }
 })
 
+lsp.on_attach(function(client, bufnr)
+    local opts = {buffer = bufnr}
+    local bind = vim.keymap.set
+
+    bind('n', '<leader>lf', '<cmd>LspZeroFormat<cr>', opts)
+    -- more keybindings...
+end)
+
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
 
