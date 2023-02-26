@@ -64,6 +64,19 @@ return packer.startup(function(use)
             vim.cmd("colorscheme rose-pine")
         end
     })
+    use "folke/tokyonight.nvim"
+    use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+    use "lunarvim/darkplus.nvim"
+    use "gruvbox-community/gruvbox"
+    use "shaunsingh/solarized.nvim"
+    use "overcache/NeoSolarized"
+    use "EdenEast/nightfox.nvim"
+    use "marko-cerovac/material.nvim"
+    use "ChristianChiarulli/nvcode-color-schemes.vim"
+    use {
+        "sonph/onehalf",
+        rtp = "vim",
+    }
 
     -- Treesitter
     use {
