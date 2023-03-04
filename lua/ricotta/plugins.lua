@@ -1,149 +1,121 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system {
-        "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
-    }
-    print "Installing packer close and reopen Neovim..."
-    vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+        vim.fn.system({
+                "git",
+                "clone",
+                "--filter=blob:none",
+                "https://github.com/folke/lazy.nvim.git",
+                "--branch=stable", -- latest stable release
+                lazypath,
+        })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerSync
-augroup end
-]]
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-    return
-end
-
--- Have packer use a popup window
-packer.init {
-    display = {
-        open_fn = function()
-            return require("packer.util").float { border = "rounded" }
-        end,
-    },
-}
+-- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Install your plugins here
-return packer.startup(function(use)
-    -- My plugins here
-    use "wbthomason/packer.nvim" -- Have packer manage itself
+require("lazy").setup({
 
-    -- Telescope
-    use {
-        "nvim-telescope/telescope.nvim", tag = "0.1.1",
-        -- or                            , branch = '0.1.x',
-        requires = { { "nvim-lua/plenary.nvim" } }
-    }
-    use {
-        "nvim-telescope/telescope-fzf-native.nvim", -- Required by some grep functions in telescope
-        run = "make"
-    }
+        -- Telescope
+        {
+                "nvim-telescope/telescope.nvim", version = "0.1.1",
+                -- or                            , branch = '0.1.x',
+                dependencies = { { "nvim-lua/plenary.nvim" } }
+        },
+        {
+                "nvim-telescope/telescope-fzf-native.nvim", -- Required by some grep functions in telescope
+                build = "make"
+        },
 
-    -- Theming
-    use "riccardoshrives/nvim-transparent"
-    use({
-        "rose-pine/neovim",
-        as = "rose-pine",
-        config = function()
-            require("rose-pine").setup()
-            vim.cmd("colorscheme rose-pine")
-        end
-    })
-    use "folke/tokyonight.nvim"
-    use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-    use "lunarvim/darkplus.nvim"
-    use "gruvbox-community/gruvbox"
-    use "shaunsingh/solarized.nvim"
-    use "overcache/NeoSolarized"
-    use "EdenEast/nightfox.nvim"
-    use "marko-cerovac/material.nvim"
-    use "ChristianChiarulli/nvcode-color-schemes.vim"
-    use {
-        "sonph/onehalf",
-        rtp = "vim",
-    }
+        -- Theming
+        "riccardoshrives/nvim-transparent",
+        {
+                "rose-pine/neovim",
+                name = "rose-pine",
+                config = function(LazyPlugin)
+                        require("rose-pine").setup()
+                        vim.cmd("colorscheme rose-pine")
+                end
+        },
+        "folke/tokyonight.nvim",
+        "lunarvim/colorschemes", -- A bunch of colorschemes you can try out
+        "lunarvim/darkplus.nvim",
+        "gruvbox-community/gruvbox",
+        "shaunsingh/solarized.nvim",
+        "overcache/NeoSolarized",
+        "EdenEast/nightfox.nvim",
+        "marko-cerovac/material.nvim",
+        "ChristianChiarulli/nvcode-color-schemes.vim",
+        {
+                "sonph/onehalf",
+                config = function(plugin)
+                        vim.opt.rtp:append(plugin.dir .. "vim")
+                end
+        },
 
-    -- Treesitter
-    use {
-        "nvim-treesitter/nvim-treesitter",
-        run = function()
-            local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-            ts_update()
-        end,
-    }
+        -- Treesitter
+        {
+                "nvim-treesitter/nvim-treesitter",
+                build = function()
+                        local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+                        ts_update()
+                end,
+        },
 
-    -- LSP
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
-        requires = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            { 'williamboman/mason.nvim' }, -- Optional
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+        -- LSP
+        {
+                'VonHeikemen/lsp-zero.nvim',
+                branch = 'v1.x',
+                dependencies = {
+                        -- LSP Support
+                        { 'neovim/nvim-lspconfig' }, -- Required
+                        { 'williamboman/mason.nvim' }, -- Optional
+                        { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' }, -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'hrsh7th/cmp-buffer' }, -- Optional
-            { 'hrsh7th/cmp-path' }, -- Optional
-            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-            { 'hrsh7th/cmp-nvim-lua' }, -- Optional
+                        -- Autocompletion
+                        { 'hrsh7th/nvim-cmp' }, -- Required
+                        { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+                        { 'hrsh7th/cmp-buffer' }, -- Optional
+                        { 'hrsh7th/cmp-path' }, -- Optional
+                        { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+                        { 'hrsh7th/cmp-nvim-lua' }, -- Optional
 
-            -- Snippets
-            { 'L3MON4D3/LuaSnip' }, -- Required
-            { 'rafamadriz/friendly-snippets' }, -- Optional
-        }
-    }
+                        -- Snippets
+                        { 'L3MON4D3/LuaSnip' }, -- Required
+                        { 'rafamadriz/friendly-snippets' }, -- Optional
+                }
+        },
 
-    -- Convenience utilities
-    use("mbbill/undotree")
-    use {
-        "akinsho/toggleterm.nvim",
-        tag = '*',
-        config = function()
-            require("toggleterm").setup()
-        end
-    }
-    use {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    }
-    use("tpope/vim-surround")
-    use("tpope/vim-unimpaired")
-    use("ahmedkhalf/project.nvim")
-    use("windwp/nvim-autopairs")
-    use {
-        'sudormrfbin/cheatsheet.nvim',
+        -- Convenience utilities
+        "mbbill/undotree",
+        {
+                "akinsho/toggleterm.nvim",
+                version = '*',
+                config = function()
+                        require("toggleterm").setup()
+                end
+        },
+        {
+                'numToStr/Comment.nvim',
+                config = function()
+                        require('Comment').setup()
+                end
+        },
+        "tpope/vim-surround",
+        "tpope/vim-unimpaired",
+        "ahmedkhalf/project.nvim",
+        "windwp/nvim-autopairs",
+        {
+                'sudormrfbin/cheatsheet.nvim',
 
-        requires = {
-            { 'nvim-telescope/telescope.nvim' },
-            { 'nvim-lua/popup.nvim' },
-            { 'nvim-lua/plenary.nvim' },
-        }
-    }
+                dependencies = {
+                        { 'nvim-telescope/telescope.nvim' },
+                        { 'nvim-lua/popup.nvim' },
+                        { 'nvim-lua/plenary.nvim' },
+                }
+        },
 
 
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if PACKER_BOOTSTRAP then
-        require("packer").sync()
-    end
-end)
+})
