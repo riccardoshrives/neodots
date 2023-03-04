@@ -31,6 +31,7 @@ keymap("n", "<leader>o", "<cmd>wincmd o<CR>", opts)
 keymap("n", "<leader>z", "<cmd>wincmd z<CR>", opts)
 keymap("n", "<leader>x", vim.cmd.Ex, opts)
 keymap("n", "<leader>w", vim.cmd.w, opts)
+keymap("n", "<c-s>", vim.cmd.w, opts)
 keymap("n", "<leader><leader>x", "<cmd>w<CR><cmd>so %<CR>", opts)
 
 -- Close buffers
