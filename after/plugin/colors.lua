@@ -1,4 +1,4 @@
-local colorscheme = "rose-pine"
+local colorscheme = "tokyonight"
 
 -- Material variables have to be set before applying the colorscheme
 if colorscheme == "material" then
