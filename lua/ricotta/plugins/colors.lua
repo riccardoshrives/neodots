@@ -1,5 +1,4 @@
 return { -- Theming
-    "riccardoshrives/nvim-transparent",
     {
         "rose-pine/neovim",
         name = "rose-pine",
