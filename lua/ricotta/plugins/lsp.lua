@@ -39,10 +39,12 @@ return {
         })
 
         lsp.on_attach(function(client, bufnr)
-            local opts = { buffer = bufnr }
             local bind = vim.keymap.set
 
-            bind('n', '<leader>lf', '<cmd>LspZeroFormat<cr>', opts)
+            bind('n', '<leader>lf', '<cmd>LspZeroFormat<cr>', {
+                buffer = bufnr,
+                desc = "[L]SP [F]ormat",
+            })
             -- more keybindings...
         end)
 
