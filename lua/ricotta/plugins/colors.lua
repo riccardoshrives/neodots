@@ -49,6 +49,12 @@ return { -- Theming
             })
         end
     },
+    {
+        "sonph/onehalf",
+        config = function(plugin)
+            vim.opt.rtp:append(plugin.dir .. "vim")
+        end
+    },
     "lunarvim/colorschemes", -- A bunch of colorschemes you can try out
     "lunarvim/darkplus.nvim",
     "gruvbox-community/gruvbox",
@@ -57,10 +63,5 @@ return { -- Theming
     "EdenEast/nightfox.nvim",
     "marko-cerovac/material.nvim",
     "ChristianChiarulli/nvcode-color-schemes.vim",
-    {
-        "sonph/onehalf",
-        config = function(plugin)
-            vim.opt.rtp:append(plugin.dir .. "vim")
-        end
-    }
+    "sainnhe/gruvbox-material",
 }
