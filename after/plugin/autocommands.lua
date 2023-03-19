@@ -70,4 +70,4 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 -- Open help pages vertically
-vim.cmd "autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif"
+-- vim.cmd "autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif"
