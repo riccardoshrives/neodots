@@ -5,9 +5,12 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         {
-            "nvim-telescope/telescope-fzf-native.nvim", -- Required by some grep functions in telescope
+            -- Required by some grep functions in telescope
+            "nvim-telescope/telescope-fzf-native.nvim",
             build = "make"
-        }
+        },
+        "nvim-telescope/telescope-file-browser.nvim", -- for browsing files
+
     },
     config = function()
         require("telescope").setup({
@@ -39,11 +42,15 @@ return {
                 colorscheme = {
                     enable_preview = true
                 }
-            }
+            },
         })
         -- To get fzf loaded and working with telescope, you need to call
         -- load_extension, somewhere after setup function:
         require("telescope").load_extension("fzf")
+
+        -- To get file_browser loaded and working with telescope, you need to call
+        -- load_extension, somewhere after setup function:
+        require("telescope").load_extension("file_browser")
 
         -- Keymaps for telescope
         local opts = function(desc)
@@ -61,6 +68,7 @@ return {
         vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts("[F]ind via [G]rep"))
         vim.keymap.set('n', '<leader>fb', builtin.buffers, opts("[F]ind [B]uffers"))
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts("[F]ind [H]elp"))
+        vim.keymap.set('n', '<leader>fx', ":Telescope file_browser <CR>", opts("[F]ile E[x]plorer"))
         vim.keymap.set('n', '<leader>ps', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
         end, opts("[P]roject [S]earch"))
