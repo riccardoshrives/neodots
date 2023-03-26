@@ -27,6 +27,7 @@ return {
 
         lsp.ensure_installed({
             "tsserver",
+            "lua_ls"
         })
 
         -- Fix Undefined global 'vim'
@@ -62,8 +63,6 @@ return {
         })
 
         lsp.on_attach(function(client, bufnr)
-            print("LSP Attached btw")
-
             local function opts(desc)
                 return {
                     buffer = bufnr,
