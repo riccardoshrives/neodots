@@ -21,6 +21,7 @@ local options = {
   softtabstop = 4, -- number of spaces in a softtab
   shiftwidth = 4, -- number of spaces inserted for each indentation
   smartindent = true, -- make indenting smarter again
+  backspace = "indent,eol,start", -- make the backspace key work properly
   bri = true, -- preserve indentation in wrapped text
   wrap = false, -- whether to wrap long lines
   scrolloff = 10, -- how many lines before the end of the page to start scrolling
