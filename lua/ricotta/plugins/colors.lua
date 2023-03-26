@@ -64,4 +64,5 @@ return { -- Theming
     "marko-cerovac/material.nvim",
     "ChristianChiarulli/nvcode-color-schemes.vim",
     "sainnhe/gruvbox-material",
+    "bluz71/vim-nightfly-guicolors",
 }
