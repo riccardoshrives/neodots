@@ -54,5 +54,7 @@ return {
         vim.cmd([[autocmd User AlphaReady echo 'ready']])
 
         alpha.setup(dashboard.config)
+
+        vim.keymap.set("n", "<leader><CR>", ":Alpha <CR>", { silent = true, noremap = true, desc = "Toggle Alpha" })
     end,
 }
