@@ -7,8 +7,8 @@ return {
         mason_null_ls.setup({
             ensure_installed = {
                 "prettier",
-                "stylua",
-                "eslint_d",
+                -- "stylua",
+                -- "eslint_d",
             },
         })
 
@@ -23,7 +23,7 @@ return {
             sources = {
                 formatting.prettier,
                 -- formatting.stylua,
-                diagnostics.eslint_d,
+                -- diagnostics.eslint_d,
             },
             -- configure format on save
             on_attach = function(current_client, bufnr)
