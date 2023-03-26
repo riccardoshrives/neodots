@@ -2,13 +2,13 @@ local colorscheme = "tokyonight"
 
 -- Material variables have to be set before applying the colorscheme
 if colorscheme == "material" then
-  vim.g.material_style = "lighter"
-  local material = require "material"
-  material.setup {
-    -- disable = {
-    --   background = true,
-    -- },
-  }
+    vim.g.material_style = "lighter"
+    local material = require("material")
+    material.setup({
+        -- disable = {
+        --   background = true,
+        -- },
+    })
 end
 
 function ColorMe(color)
@@ -21,6 +21,6 @@ end
 
 local status_ok, _ = pcall(ColorMe)
 if not status_ok then
-  vim.notify("colorscheme " .. colorscheme .. " not found!")
-  return
+    vim.notify("colorscheme " .. colorscheme .. " not found!")
+    return
 end

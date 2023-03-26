@@ -1,8 +1,8 @@
 return {
     "goolord/alpha-nvim",
     config = function()
-        local alpha = require 'alpha'
-        local dashboard = require 'alpha.themes.dashboard'
+        local alpha = require("alpha")
+        local dashboard = require("alpha.themes.dashboard")
 
         dashboard.section.header.val = "  𝕟 𝕖 𝕠 𝕧 𝕚 𝕞  "
 
@@ -44,14 +44,14 @@ return {
             dashboard.section.footer,
         }
 
-        local handle = io.popen('fortune -s')
+        local handle = io.popen("fortune -s")
         local fortune = handle:read("*a")
         handle:close()
         dashboard.section.footer.val = fortune
 
         dashboard.config.opts.noautocmd = true
 
-        vim.cmd [[autocmd User AlphaReady echo 'ready']]
+        vim.cmd([[autocmd User AlphaReady echo 'ready']])
 
         alpha.setup(dashboard.config)
     end,
