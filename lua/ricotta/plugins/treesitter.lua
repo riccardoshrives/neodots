@@ -1,5 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	dependencies = "windwp/nvim-ts-autotag",
 	build = function()
 		local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
 		ts_update()
@@ -34,6 +35,8 @@ return {
 				-- Instead of true it can also be a list of languages
 				additional_vim_regex_highlighting = false,
 			},
+			indent = { enable = true },
+			autotag = { enable = true },
 		})
 	end,
 }
