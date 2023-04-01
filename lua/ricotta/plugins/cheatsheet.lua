@@ -14,7 +14,10 @@ return {
             --     enabled = {},
             --     disabled = {},
             -- },
-            bundled_cheatsheets = true,
+            bundled_cheatsheets = {
+                disabled = {'nerd-fonts'}
+            },
+
             -- For plugin specific cheatsheets
             -- bundled_plugin_cheatsheets = {
             --     enabled = {},
