@@ -1,0 +1,17 @@
+return {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {
+        show_current_context = true,
+        show_current_context_start = true,
+        use_treesitter = true,
+        context_highlight_list = {
+            "TSRainbowViolet",
+            "TSRainbowBlue",
+            "TSRainbowCyan",
+            "TSRainbowGreen",
+            "TSRainbowYellow",
+            "TSRainbowOrange",
+            "TSRainbowRed",
+        }
+    }
+}
