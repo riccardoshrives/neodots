@@ -15,13 +15,22 @@ return {
         local null_ls = require("null-ls")
 
         local formatting = null_ls.builtins.formatting
-        local diagnostics = null_ls.builtins.diagnostics
+        -- local diagnostics = null_ls.builtins.diagnostics
 
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
         null_ls.setup({
             sources = {
-                formatting.prettier,
+                formatting.prettier.with({
+                    extra_args = function(params)
+                        return params.options
+                            and params.options.tabSize
+                            and {
+                                "--tab-width",
+                                params.options.tabSize,
+                            }
+                    end,
+                }),
                 -- formatting.stylua,
                 -- diagnostics.eslint_d,
             },
