@@ -68,6 +68,7 @@ return {
         vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts("[F]ind via [G]rep"))
         vim.keymap.set('n', '<leader>fb', builtin.buffers, opts("[F]ind [B]uffers"))
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts("[F]ind [H]elp"))
+        vim.keymap.set('n', '<leader>fo', builtin.oldfiles, opts("[F]ind [O]ldfiles"))
         vim.keymap.set('n', '<leader>fx', ":Telescope file_browser <CR>", opts("[F]ile E[x]plorer"))
         vim.keymap.set('n', '<leader>ps', function()
             builtin.grep_string({ search = vim.fn.input("Grep > ") })
