@@ -1,77 +1,123 @@
 return {
     "nvim-telescope/telescope.nvim",
-    version = "0.1.1",
-    -- or                            , branch = '0.1.x',
+    cmd = "Telescope",
+    version = false, -- telescope did only one release, so use HEAD for now
     dependencies = {
         "nvim-lua/plenary.nvim",
         {
             -- Required by some grep functions in telescope
             "nvim-telescope/telescope-fzf-native.nvim",
-            build = "make"
+            build = "make",
+            config = function()
+                -- To get fzf loaded and working with telescope, you need to call
+                -- load_extension, somewhere after setup function:
+                require("telescope").load_extension("fzf")
+            end
         },
-        "nvim-telescope/telescope-file-browser.nvim", -- for browsing files
+        {
+            -- for browsing files
+            "nvim-telescope/telescope-file-browser.nvim",
+            config = function()
+                -- To get file_browser loaded and working with telescope, you need to call
+                -- load_extension, somewhere after setup function:
+                require("telescope").load_extension("file_browser")
+            end
+        },
 
     },
-    config = function()
-        require("telescope").setup({
-            defaults = {
-                -- Default configuration for telescope goes here:
-                -- config_key = value
-                mappings = {
-                    i = {
-                        ["<Down>"] = require("telescope.actions").cycle_history_next,
-                        ["<Up>"] = require("telescope.actions").cycle_history_prev,
-                        ["<C-j>"] = require("telescope.actions").move_selection_next,
-                        ["<C-k>"] = require("telescope.actions").move_selection_previous,
-                    },
-                    n = {
-                        ["q"] = require("telescope.actions").close,
-                    },
+    keys = {
+        {
+            '<leader>t',
+            require("telescope.builtin").builtin,
+            noremap = true,
+            silent = true,
+            desc = "[T]elescope"
+        },
+        {
+            '<leader>pf',
+            require("telescope.builtin").git_files,
+            noremap = true,
+            silent = true,
+            desc = "[P]roject [F]iles"
+        },
+        {
+            '<leader>ff',
+            require("telescope.builtin").find_files,
+            noremap = true,
+            silent = true,
+            desc = "[F]ind [F]iles"
+        },
+        {
+            '<leader>fg',
+            require("telescope.builtin").live_grep,
+            noremap = true,
+            silent = true,
+            desc = "[F]ind via [G]rep"
+        },
+        {
+            '<leader>fb',
+            require("telescope.builtin").buffers,
+            noremap = true,
+            silent = true,
+            desc = "[F]ind [B]uffers"
+        },
+        { '<leader>fh', require("telescope.builtin").help_tags, { noremap = true, silent = true, desc = "[F]ind [H]elp" } },
+        {
+            '<leader>fo',
+            require("telescope.builtin").oldfiles,
+            noremap = true,
+            silent = true,
+            desc = "[F]ind [O]ldfiles"
+        },
+        {
+            '<leader>fx',
+            ":Telescope file_browser <CR>",
+            noremap = true,
+            silent = true,
+            desc = "[F]ile E[x]plorer"
+        },
+        {
+            '<leader>ps',
+            function()
+                require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
+            end,
+            noremap = true,
+            silent = true,
+            desc = "[P]roject [S]earch"
+        }
+    },
+    opts = {
+        defaults = {
+            -- Default configuration for telescope goes here:
+            -- config_key = value
+            mappings = {
+                i = {
+                    ["<Down>"] = require("telescope.actions").cycle_history_next,
+                    ["<Up>"] = require("telescope.actions").cycle_history_prev,
+                    ["<C-j>"] = require("telescope.actions").move_selection_next,
+                    ["<C-k>"] = require("telescope.actions").move_selection_previous,
                 },
-                prompt_prefix = " ",
-                selection_caret = " ",
-                -- Format path as "file.txt (path\to\file\)"
-                path_display = function(opts, path)
-                    local tail = require("telescope.utils").path_tail(path)
-                    return string.format("%s (%s)", tail, path)
-                end,
-                file_ignore_patterns = { ".git/", "node_modules" },
-
+                n = {
+                    ["q"] = require("telescope.actions").close,
+                },
             },
-            pickers = {
-                colorscheme = {
-                    enable_preview = true
-                }
-            },
-        })
-        -- To get fzf loaded and working with telescope, you need to call
-        -- load_extension, somewhere after setup function:
-        require("telescope").load_extension("fzf")
-
-        -- To get file_browser loaded and working with telescope, you need to call
-        -- load_extension, somewhere after setup function:
-        require("telescope").load_extension("file_browser")
-
-        -- Keymaps for telescope
-        local opts = function(desc)
-            return {
-                desc = desc,
-                noremap = true,
-                silent = true
+            prompt_prefix = " ",
+            selection_caret = " ",
+            -- Format path as "file.txt (path\to\file\)"
+            path_display = function(opts, path)
+                local tail = require("telescope.utils").path_tail(path)
+                return string.format("%s (%s)", tail, path)
+            end,
+            file_ignore_patterns = { ".git/", "node_modules" },
+            -- theme = "ivy",
+        },
+        pickers = {
+            colorscheme = {
+                enable_preview = true
             }
-        end
-        local builtin = require('telescope.builtin')
-        -- vim.keymap.set('n', '<leader>t', '<cmd>Telescope<CR>', opts)
-        vim.keymap.set('n', '<leader>t', builtin.builtin, opts("[T]elescope"))
-        vim.keymap.set('n', '<leader>pf', builtin.git_files, opts("[P]roject [F]iles"))
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, opts("[F]ind [F]iles"))
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts("[F]ind via [G]rep"))
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, opts("[F]ind [B]uffers"))
-        vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts("[F]ind [H]elp"))
-        vim.keymap.set('n', '<leader>fo', builtin.oldfiles, opts("[F]ind [O]ldfiles"))
-        vim.keymap.set('n', '<leader>fx', ":Telescope file_browser <CR>", opts("[F]ile E[x]plorer"))
-        vim.keymap.set('n', '<leader>ps', function()
-            builtin.grep_string({ search = vim.fn.input("Grep > ") })
-        end, opts("[P]roject [S]earch"))
-    end
+        },
+    },
+    -- config = function()
+    --     require("telescope").setup()
+    -- end
 }

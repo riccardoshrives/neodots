@@ -5,9 +5,9 @@ if colorscheme == "material" then
     vim.g.material_style = "lighter"
     local material = require("material")
     material.setup({
-        -- disable = {
-        --   background = true,
-        -- },
+        disable = {
+          background = true,
+        },
     })
 end
 

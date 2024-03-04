@@ -1,7 +1,10 @@
 return {
     "goolord/alpha-nvim",
+    event = "VimEnter",
+    keys = {
+        { "<leader><CR>", ":Alpha <CR>", silent = true, noremap = true, desc = "Toggle Alpha" }
+    },
     config = function()
-        local alpha = require("alpha")
         local dashboard = require("alpha.themes.dashboard")
 
         dashboard.section.header.val = "  𝕟 𝕖 𝕠 𝕧 𝕚 𝕞  "
@@ -13,7 +16,8 @@ return {
             dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
             dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
             -- dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-            dashboard.button("c", " " .. " Config", ":lua require('telescope.builtin').fd({cwd='~/.config/nvim/'}) <CR>"),
+            dashboard.button("c", " " .. " Config",
+                ":lua require('telescope.builtin').fd({cwd='~/.config/nvim/'}) <CR>"),
             -- dashboard.button("s", "勒" .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
             dashboard.button("l", "鈴" .. " Lazy", ":Lazy<CR>"),
             dashboard.button("q", " " .. " Quit", ":qa<CR>"),
@@ -52,10 +56,21 @@ return {
 
         dashboard.config.opts.noautocmd = true
 
-        vim.cmd([[autocmd User AlphaReady echo 'ready']])
+        -- close Lazy and re-open when the dashboard is ready
+        if vim.o.filetype == "lazy" then
+            vim.cmd.close()
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "AlphaReady",
+                callback = function()
+                    require("lazy").show()
+                end,
+            })
+        end
 
-        alpha.setup(dashboard.config)
+        -- vim.cmd([[autocmd User AlphaReady echo 'ready']])
 
-        vim.keymap.set("n", "<leader><CR>", ":Alpha <CR>", { silent = true, noremap = true, desc = "Toggle Alpha" })
-    end,
+        require("alpha").setup(dashboard.config)
+
+        -- vim.keymap.set("n", "<leader><CR>", ":Alpha <CR>", { silent = true, noremap = true, desc = "Toggle Alpha" })
+    end
 }
