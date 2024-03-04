@@ -95,58 +95,64 @@ vim.g.maplocalleader = ' '
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, for help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+local options = {
+  backspace = 'indent,eol,start', -- make the backspace key work properly
+  backup = false, -- do not use vim backups
+  bri = true, -- preserve indentation in wrapped text
+  completeopt = 'menu,menuone,noselect', -- whether to use a popup menu for Insert mode completion
+  clipboard = vim.opt.clipboard + 'unnamedplus', -- use system clipboard
+  cpo = vim.opt.cpo + 'n', -- When included, the column used for 'number' and 'relativenumber' will also be used for text of wrapped lines.
+  cursorline = true, -- where tf is my cursor?
+  errorbells = false, -- shut up
+  expandtab = true, -- converts tabs to spaces
+  exrc = true, -- checks if there is a specific config / vimrc
+  fileencoding = 'utf-8', -- the encoding written to a file
+  foldcolumn = 'auto', -- width of the column used to indicate folds
+  foldmethod = 'manual', -- set default fold type
+  hidden = true, -- hide buffers instead of closing
+  hlsearch = false, -- remove highlight when I'm done searching
+  ignorecase = true, -- ignore case when using a search pattern
+  incsearch = true, -- show matches as I am searching
+  inccommand = 'split', -- preview substitutions live, as you type!
+  isfname = vim.opt.isfname + '@-@', -- include more characters in file names
+  mouse = 'a', -- enable mouse support
+  number = true, -- set numbered lines
+  pumheight = 10, -- pop up menu height
+  relativenumber = true, -- set relative numbered lines
+  scrolloff = 10, -- how many lines before the end of the page to start scrolling
+  shortmess = vim.opt.shortmess + 'c', -- Don't pass messages to ins-completion-menu
+  sidescrolloff = 8, -- same as scrolloff but for the sides
+  signcolumn = 'yes', -- always show the sign column, otherwise the text would shift each time
+  shiftwidth = 4, -- number of spaces inserted for each indentation
+  showmode = false, -- we no longer need to display the current mode in the msg area
+  smartcase = true, -- override 'ignorcase' when pattern has upper case characters
+  softtabstop = 4, -- number of spaces in a softtab
+  splitbelow = true, -- a new window is put below the current one
+  splitright = true, -- a new window is put right of the current one
+  smartindent = true, -- make indenting smarter again
+  swapfile = false, -- use buffers without swapfiles
+  tabstop = 4, -- number of spaces in a tab
+  termguicolors = true, -- enable 24-bit RGB color, use term gui colors
+  timeoutlen = 300, -- Time in milliseconds to wait for a mapped sequence to complete.
+  undofile = true, -- create an undo file instead
+  updatetime = 250, -- Decrease update time
+  wildmenu = true, -- command-line completions shows a list of matches
+  -- winbar = "%h%m %{%v:lua.require'nvim-navic'.get_location()%}%=%f", -- customize winbar
+  wrap = false, -- whether to wrap long lines
+}
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+for key, value in pairs(options) do
+  vim.opt[key] = value
+end
 
--- Don't show the mode, since it's already in status line
-vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or capital in search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
-
--- Decrease update time
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+-- put those undo fles in this directory
+vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir/'
 
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -183,6 +189,24 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<leader>o', '<C-w><C-o>', { desc = 'Make the current window the [o]nly window' })
+vim.keymap.set('n', '<leader>z', '<C-w><C-z>', { desc = 'Close netrw preview window' })
+vim.keymap.set('n', '<leader>x', vim.cmd.Ex, { desc = 'E[x]lplore directory' })
+vim.keymap.set('n', '<leader>c', vim.cmd.close, { desc = '[C]lose buffer' })
+vim.keymap.set('n', '<S-Up>', vim.cmd 'resize -2', { desc = 'Increase horizontal size' })
+vim.keymap.set('n', '<S-Down>', vim.cmd 'resize +2', { desc = 'Decrease horizontal size' })
+vim.keymap.set('n', '<S-Left>', vim.cmd 'vertical resize -2', { desc = 'Increase horizontal size' })
+vim.keymap.set('n', '<S-Right>', vim.cmd 'vertical resize +2', { desc = 'Decrease horizontal size' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Jump down half page' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Jump up half page' })
+
+-- Stay in indent mode
+vim.keymap.set('v', '<', '<gv', { desc = 'Indent selection left' })
+vim.keymap.set('v', '>', '>gv', { desc = 'Indent selection right' })
+
+-- Move text up and down
+vim.keymap.set('v', '<S-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection up' })
+vim.keymap.set('v', '<S-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection down' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
