@@ -192,7 +192,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>o', '<C-w><C-o>', { desc = 'Make the current window the [o]nly window' })
 vim.keymap.set('n', '<leader>z', '<C-w><C-z>', { desc = 'Close netrw preview window' })
 vim.keymap.set('n', '<leader>x', vim.cmd.Ex, { desc = 'E[x]lplore directory' })
-vim.keymap.set('n', '<leader>c', vim.cmd.close, { desc = '[C]lose buffer' })
+-- vim.keymap.set('n', '<leader>c', vim.cmd.close, { desc = '[C]lose buffer' })
 vim.keymap.set('n', '<S-Up>', vim.cmd 'resize -2', { desc = 'Increase horizontal size' })
 vim.keymap.set('n', '<S-Down>', vim.cmd 'resize +2', { desc = 'Decrease horizontal size' })
 vim.keymap.set('n', '<S-Left>', vim.cmd 'vertical resize -2', { desc = 'Increase horizontal size' })
@@ -856,7 +856,7 @@ require('lazy').setup {
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
