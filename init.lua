@@ -119,6 +119,7 @@ local options = {
   number = true, -- set numbered lines
   pumheight = 10, -- pop up menu height
   relativenumber = true, -- set relative numbered lines
+  rtp = vim.opt.rtp + '/opt/homebrew/opt/fzf', -- fzf
   scrolloff = 10, -- how many lines before the end of the page to start scrolling
   shortmess = vim.opt.shortmess + 'c', -- Don't pass messages to ins-completion-menu
   sidescrolloff = 8, -- same as scrolloff but for the sides
