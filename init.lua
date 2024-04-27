@@ -161,6 +161,10 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- Control s for that save file muscle memory
+vim.keymap.set('n', '<C-s>', vim.cmd.w, { desc = 'Save file' })
+vim.keymap.set('i', '<C-s>', vim.cmd.w, { desc = 'Save file' })
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
