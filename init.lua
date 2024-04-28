@@ -205,13 +205,22 @@ require('lazy').setup({
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
-        -- pickers = {}
 
         defaults = {
           mappings = {
             i = {
               ['<up>'] = 'cycle_history_prev',
               ['<down>'] = 'cycle_history_next',
+            },
+          },
+        },
+
+        pickers = {
+          help_tags = {
+            mappings = {
+              i = {
+                ['<cr>'] = 'select_vertical',
+              },
             },
           },
         },
