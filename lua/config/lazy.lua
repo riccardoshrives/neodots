@@ -1,23 +1,26 @@
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
   -- bootstrap lazy.nvim
   -- stylua: ignore
   vim.fn.system ({
     'git',
     'clone',
     '--filter=blob:none',
-    '--branch=stable',
     lazyrepo,
+    '--branch=stable',
     lazypath,
   })
-end ---@diagnostic disable-next-line: undefined-field
+end
+
+-- Add lazy to the `runtimepath`, this allows us to `require` it
+---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 -- [[ Configure lazy ]]
-require('lazy').setup {
+require("lazy").setup {
   spec = {
     -- add LazyVim and import its plugins
     -- { 'LazyVim/LazyVim', import = 'lazyvim.plugins' },
@@ -26,7 +29,7 @@ require('lazy').setup {
     -- { import = "lazyvim.plugins.extras.lang.json" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins
-    { import = 'plugins' },
+    { import = "plugins" },
     -- require 'kickstart.plugins.debug',
     -- require 'kickstart.plugins.autopairs',
 
@@ -41,20 +44,24 @@ require('lazy').setup {
     -- version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { 'catppuccin', 'tokyonight', 'habamax' } },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
+  browser = "Firefox",
+  -- checker = {
+  --   enabled = true,
+  --   frequency = 86400, -- check for updates once a day
+  -- }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins
       disabled_plugins = {
-        'gzip',
+        "gzip",
         -- "matchit",
         -- "matchparen",
         -- "netrwPlugin",
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'zipPlugin',
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
       },
     },
   },
@@ -64,19 +71,19 @@ require('lazy').setup {
     -- if you have a nerd font, set icons to an empty table which will use the
     -- default lazy.nvim defined nerd font icons otherwise define a unicode icons table
     icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🗝",
+      plugin = "🔌",
+      runtime = "💻",
+      require = "🌙",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+      lazy = "💤 ",
     },
   },
 }
