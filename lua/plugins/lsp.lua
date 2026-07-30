@@ -170,6 +170,7 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format lua code
+      "prettier", -- autoformats markdown (wraps prose to 80 on save)
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
