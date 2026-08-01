@@ -45,7 +45,6 @@ require("lazy").setup {
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "catppuccin", "tokyonight", "habamax" } },
-  browser = "Firefox",
   -- checker = {
   --   enabled = true,
   --   frequency = 86400, -- check for updates once a day
@@ -68,6 +67,7 @@ require("lazy").setup {
   change_detection = { notify = false },
   profiling = { require = true },
   ui = {
+    browser = "Firefox",
     -- if you have a nerd font, set icons to an empty table which will use the
     -- default lazy.nvim defined nerd font icons otherwise define a unicode icons table
     icons = vim.g.have_nerd_font and {} or {
