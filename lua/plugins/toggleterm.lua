@@ -38,8 +38,8 @@ return {
       cmd = 'lazygit',
       hidden = true,
       direction = 'float',
-      on_open = function()
-        vim.keymap.set('n', '<esc>', '<cmd>close<CR>', { noremap = true, silent = true })
+      on_open = function(term)
+        vim.keymap.set('n', '<esc>', '<cmd>close<CR>', { buffer = term.bufnr, noremap = true, silent = true })
       end,
     }
 
