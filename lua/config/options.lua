@@ -41,8 +41,7 @@ local options = {
   tabstop = 4, -- number of spaces in a tab
   termguicolors = true, -- enable 24-bit RGB color, use term gui colors
   timeoutlen = 300, -- Time in milliseconds to wait for a mapped sequence to complete.
-  -- undodir = os.getenv('HOME' .. '/.vim/undodir'), -- put those undofiles in this directory
-  undofile = true, -- create an undo file instead
+  undofile = true, -- persistent undo, stored in stdpath('state')/undo
   updatetime = 250, -- Decrease update time
   wildmenu = true, -- command-line completions shows a list of matches
   -- winbar = "%h%m %{%v:lua.require'nvim-navic'.get_location()%}%=%f", -- customize winbar
@@ -52,6 +51,3 @@ local options = {
 for key, value in pairs(options) do
   vim.opt[key] = value
 end
-
--- put those undo fles in this directory
-vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir/'
