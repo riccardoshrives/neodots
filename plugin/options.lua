@@ -11,7 +11,6 @@ local options = {
   errorbells = false, -- shut up
   expandtab = true, -- converts tabs to spaces
   exrc = true, -- checks if there is a specific config / vimrc
-  fileencoding = "utf-8", -- the encoding written to a file
   foldcolumn = "auto", -- width of the column used to indicate folds
   foldmethod = "manual", -- set default fold type
   hidden = true, -- hide buffers instead of closing
